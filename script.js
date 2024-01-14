@@ -22,13 +22,14 @@ function playRound(playerSelection, computerSelection) {
          console.log("Looks like It's a tie");
       }
       else if (playerSelection === 'rock' && computerSelection === 'scissor') {
-           console.log("You win, Rock beats Scissor");
+            console.log("You win, Rock beats Scissor");   
       }
       else if(playerSelection === 'rock' && computerSelection === 'paper') {
          console.log("You lose, paper beats Rock");
       }
       else if(playerSelection === 'paper' && computerSelection === 'rock') {
-         console.log("You win, paper beats rock");
+         console.log("You win, paper beats rock");  
+          
       }
       else if(playerSelection === 'paper' && computerSelection === 'scissor'){
         console.log("You lose, scissor beats paper");
@@ -39,13 +40,23 @@ function playRound(playerSelection, computerSelection) {
       } 
       else if(playerSelection === 'scissor' && computerSelection === 'paper'){
         console.log("You win, scissor beats paper");
+        
       }
       else {
         console.log("Invalid input ")
       }      
        
-      
-      }
-playerSelection = prompt("Choose your weapon");
+       }
 
-playRound(playerSelection, getComputerChoice());
+      function game() {
+  playerSelection = prompt("Choose your weapon");
+  
+  playRound(playerSelection, getComputerChoice());
+  
+}
+
+ game();
+ game();
+ game();
+ game();
+ game();
