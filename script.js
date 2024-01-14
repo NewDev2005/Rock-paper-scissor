@@ -46,6 +46,6 @@ function playRound(playerSelection, computerSelection) {
        
       
       }
-playerSelection = "PAPER";
+playerSelection = prompt("Choose your weapon");
 
 playRound(playerSelection, getComputerChoice());
