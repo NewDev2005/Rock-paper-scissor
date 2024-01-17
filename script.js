@@ -1,62 +1,109 @@
-function getComputerChoice() {
+function getComputerChoice(){
   let randomNum = Math.floor((Math.random() * 3) + 1);
   let choice;
-  if (randomNum === 1) {
-     choice = "rock";
+  if(randomNum === 1){
+    choice = 'rock';
+  } 
+  else if(randomNum === 2){
+    choice = 'scissor';
   }
-  else if (randomNum === 2) {
-     choice = "paper";
-  
-}
-else if (randomNum === 3) {
-  choice =  "scissor";
-}
-return choice;
+  else{
+    choice = 'paper';
+  }
+  return choice;
 }
 
-function playRound(playerSelection, computerSelection) {
-      
-      playerSelection = playerSelection.toLowerCase();
+function getPlayerChoice(){
+  let caseNormalize;
+  let playerInput = prompt("choose your weapon");
+   caseNormalize = playerInput.toLowerCase();
+   return caseNormalize;
+
+}
+
+function getScore(){
+  let PlayerCounter = 0;
+  let compCounter = 0;
+  let score;
+  playerSelection = getPlayerChoice();
+  computerSelection = getComputerChoice();
+  score = playRound(playerSelection, computerSelection);
+    if(score === "you win, Rock beats scissor"|| score === "you win, paper beats rock" || score === "you win, scissor beats paper") {
+       return PlayerCounter++;
+    }
+    else if(score === "you lose, paper beats rock"|| score === "you lose, scissor beats paper" || score === "you lose, scissor beats rock"){
+      return compCounter ++;
+    }
+  
+   }
+  
+function playRound(playerSelection, computerSelection){
+  
+  
+  if(playerSelection === computerSelection){
+    return "tie";
+
+  }
+   else if(playerSelection === 'rock' && computerSelection === 'scissor'){
      
-      if (playerSelection === computerSelection) {
-         console.log("Looks like It's a tie");
-      }
-      else if (playerSelection === 'rock' && computerSelection === 'scissor') {
-            console.log("You win, Rock beats Scissor");   
-      }
-      else if(playerSelection === 'rock' && computerSelection === 'paper') {
-         console.log("You lose, paper beats Rock");
-      }
-      else if(playerSelection === 'paper' && computerSelection === 'rock') {
-         console.log("You win, paper beats rock");  
-          
-      }
-      else if(playerSelection === 'paper' && computerSelection === 'scissor'){
-        console.log("You lose, scissor beats paper");
-      }
-      else if(playerSelection === 'scissor' && computerSelection === 'rock'){
-        console.log("You lose, rock beats scissor");
-      
-      } 
-      else if(playerSelection === 'scissor' && computerSelection === 'paper'){
-        console.log("You win, scissor beats paper");
-        
-      }
-      else {
-        console.log("Invalid input ")
-      }      
-       
-       }
+    return "you win, Rock beats scissor";
+   }
+   else if(playerSelection === 'rock' && computerSelection === 'paper'){
+   
+    return "you lose, paper beats rock";
+   }
+   else if(playerSelection === 'paper' && computerSelection === 'rock'){
+    
+    return "you win, paper beats rock";
+   }
+   else if(playerSelection === 'paper' && computerSelection === 'scissor'){
+    
+    return "you lose, scissor beats paper";
+   }
+   else if(playerSelection === 'scissor' && computerSelection === 'paper'){
+    
+    return "you win, scissor beats paper";
+   }
+   else if(playerSelection === 'scissor' && computerSelection === 'rock' ){
+    
+    return "you lose, scissor beats rock"; 
 
-      function game() {
-  playerSelection = prompt("Choose your weapon");
-  
-  playRound(playerSelection, getComputerChoice());
-  
-}
+   }
+   else {
+    return null;
+   }
+   
 
- game();
- game();
- game();
- game();
- game();
+  }
+
+  function game(){
+    playerSelection = getPlayerChoice();
+  computerSelection = getComputerChoice();
+  
+  
+  playRound(playerSelection, computerSelection);
+  playRound(playerSelection, computerSelection);
+  playRound(playerSelection, computerSelection);
+  playRound(playerSelection, computerSelection);
+  playRound(playerSelection, computerSelection);
+  getScore();
+  if(playerCounter > compCounter){
+    console.log("Congratulaions, you are the winner");
+  }
+  else if(playercounter < compCounter){
+    console.log("sorry, you lost the game");
+  }
+  else{
+    console.log("it's a tie ,match");
+  }
+  
+  
+
+  }
+  
+  
+  console.log(game());
+  
+  
+
+  
