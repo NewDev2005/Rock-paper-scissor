@@ -13,13 +13,6 @@ function getComputerChoice(){
   return choice;
 }
 
-function getPlayerChoice(){
-  let caseNormalize;
-  let playerInput = prompt("choose your weapon");
-   caseNormalize = playerInput.toLowerCase();
-   return caseNormalize;
-}
-
 let playerCounter = 0;
   let compCounter = 0;
 
@@ -28,99 +21,101 @@ function playRound(playerSelection, computerSelection){
   
   
   if(playerSelection === computerSelection){
-    console.log("------------------");
-    return " Looks like its a tie";
+    
+    para.textContent = "TIE!";
 
   }
    else if(playerSelection === 'rock' && computerSelection === 'scissor'){
      playerCounter++;
-     console.log("------------------")
-    return  `computer: ${computerSelection}  
-you win, rock beats scissor`;
+     para.textContent = `computer: ${computerSelection}|| you win, rock beats scissor`;
    }
    else if(playerSelection === 'rock' && computerSelection === 'paper'){
       compCounter++;
-      console.log("------------------")
-    return `computer: ${computerSelection}    
-you lose, paper beats rock`;
+      para.textContent = `computer: ${computerSelection} || you lose, paper beats rock`;
    }
    else if(playerSelection === 'paper' && computerSelection === 'rock'){
     playerCounter++;
-    console.log("------------------")
-    return `computer: ${computerSelection}   
-you win, paper beats rock`;
+    para.textContent = `computer: ${computerSelection} || you win, paper beats rock`;
    }
    else if(playerSelection === 'paper' && computerSelection === 'scissor'){
     compCounter++;
-    console.log("------------------")
-    return `computer: ${computerSelection}   
-you lose, scissor beats paper`;
+    para.textContent = `computer: ${computerSelection} || you lose, scissor beats paper`;
    }
    else if(playerSelection === 'scissor' && computerSelection === 'paper'){
     playerCounter++;
-    console.log("------------------");
-    return `computer: ${computerSelection}   
-you win, scissor beats paper`;
+    para.textContent = `computer: ${computerSelection} || you win, scissor beats paper`;
    }
    else if(playerSelection === 'scissor' && computerSelection === 'rock' ){
     compCounter++;
-    console.log("------------------")
-    return `computer: ${computerSelection}   
-you lose, rock beats scissor`; 
+    para.textContent = `computer: ${computerSelection} || you lose, rock beats scissor`; 
 
    }
+
    
   }
-  
- 
-  function game(){
-   
-    
-  //  playerSelection = getPlayerChoice();
-  // computerSelection = getComputerChoice();
- console.log(playRound(getPlayerChoice(), getComputerChoice()));
- console.log(playRound(getPlayerChoice(), getComputerChoice()));
- console.log(playRound(getPlayerChoice(), getComputerChoice()));
- console.log(playRound(getPlayerChoice(), getComputerChoice()));
- console.log(playRound(getPlayerChoice(), getComputerChoice()));
- console.log("------------------");
- if(playerCounter > compCounter){
-  console.log("**you are the winner of the match**")
- }
- else if(compCounter > playerCounter){
-  console.log("**you lose, Computer Beats you**")
- }
- else {
-  console.log("**TIE**")
- }
-  
-  
-   
-  
+  const displayScore = document.querySelector("#displayScore");
+   const para = document.createElement('p');
+  const paraSecond = document.createElement('p');
+  paraSecond.classList.add("resultText");
+  para.classList.add("score");
+  displayScore.appendChild(para);
+  displayScore.appendChild(paraSecond);
+  const rockBtn = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissor = document.querySelector('#scissor');
+
+
+rockBtn.addEventListener("click", () => {
+  playerSelection = "rock";
+  computerSelection = getComputerChoice();
+  playRound(playerSelection,computerSelection);
+  checkWinner();
+});
+
+paper.addEventListener("click", () => {
+  playerSelection = "paper";
+  computerSelection = getComputerChoice();
+  playRound(playerSelection,computerSelection);
+  checkWinner();
+});
+
+scissor.addEventListener("click", () => {
+  playerSelection = "scissor";
+  computerSelection = getComputerChoice();
+  playRound(playerSelection,computerSelection);
+ checkWinner();
+});
+
+function restartGame(){
+  const reload = document.querySelector('#reload');
+  const refresh = document.createElement("button");
+  refresh.textContent = "Restart-the-🎮"
+  refresh.classList.add("refreshBtn");
+  reload.appendChild(refresh);
+  refresh.addEventListener("click", () => {
+    location.reload()
+});
 }
-  game();
-  
-  
-  
-  
-  
-  
-  
-  
-  
- 
-  
-  
-  
- 
-  
-  
-  
-  
- 
-  
-   
-  
- 
-  
-  
+
+function stopGame(){
+  document.querySelector('#rock').disabled = true;
+  document.querySelector('#paper').disabled = true;
+  document.querySelector('#scissor').disabled = true;
+}
+
+
+function checkWinner(){
+  paraSecond.textContent = `your score: ${playerCounter} || computerScore: ${compCounter}`;
+
+if(playerCounter >= 5){
+  paraSecond.textContent = "🎊Congrats, You won the Match🎊";
+  stopGame();
+}
+else if(compCounter >= 5){
+    paraSecond.textContent = "**👎 You Lost the Match**";
+   stopGame();
+}
+
+}
+
+restartGame();
